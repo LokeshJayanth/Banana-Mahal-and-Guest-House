@@ -5,6 +5,16 @@
   <title>Book Your Event | Banana Mahal</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   
+  <!-- Security Headers -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  
+  <!-- SEO & Description -->
+  <meta name="description" content="Book your event at Banana Mahal - Premium Function Hall and Guest House. Secure online booking system.">
+  <meta name="robots" content="index, follow">
+  
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
   
@@ -79,22 +89,22 @@
       </div>
       
       <div class="field">
-        <input type="text" id="name" required>
+        <input type="text" id="name" required maxlength="100" autocomplete="name">
         <label>Your Name</label>
       </div>
       
       <div class="field">
-        <input type="tel" id="phone" pattern="[0-9]{10}" required>
+        <input type="tel" id="phone" pattern="[6-9][0-9]{9}" required maxlength="10" autocomplete="tel">
         <label>Mobile Number (10 digits)</label>
       </div>
       
       <div class="field">
-        <input type="number" id="guests" min="1" required>
+        <input type="number" id="guests" min="1" max="10000" required>
         <label>Number of Guests</label>
       </div>
       
       <div class="field">
-        <textarea id="message" rows="3"></textarea>
+        <textarea id="message" rows="3" maxlength="500"></textarea>
         <label>Additional Message (Optional)</label>
       </div>
       

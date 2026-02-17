@@ -1,9 +1,107 @@
-# Enable GZIP Compression
+# ============================================
+# SECURITY HEADERS - BANANA MAHAL
+# ============================================
+
+# Prevent Clickjacking Attacks
+<IfModule mod_headers.c>
+  # X-Frame-Options: Prevent site from being embedded in iframes
+  Header always set X-Frame-Options "SAMEORIGIN"
+  
+  # X-Content-Type-Options: Prevent MIME type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+  
+  # X-XSS-Protection: Enable browser XSS protection
+  Header always set X-XSS-Protection "1; mode=block"
+  
+  # Referrer-Policy: Control referrer information
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  
+  # Permissions-Policy: Disable unnecessary browser features
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+  
+  # Content-Security-Policy: Prevent XSS and injection attacks
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdn.tailwindcss.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://script.googleusercontent.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://wa.me;"
+  
+  # Strict-Transport-Security: Force HTTPS (uncomment when SSL is active)
+  # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+</IfModule>
+
+# ============================================
+# DISABLE DIRECTORY LISTING
+# ============================================
+Options -Indexes
+
+# ============================================
+# PROTECT SENSITIVE FILES
+# ============================================
+<FilesMatch "^\.">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# Protect .htaccess itself
+<Files .htaccess>
+  Order allow,deny
+  Deny from all
+</Files>
+
+# Protect configuration files
+<FilesMatch "\.(env|json|log|md|sql|bak|config|ini)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
+
+# ============================================
+# PREVENT SQL INJECTION & XSS IN URL
+# ============================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # Block suspicious query strings
+  RewriteCond %{QUERY_STRING} (<|%3C).*script.*(>|%3E) [NC,OR]
+  RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+  RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2}) [OR]
+  RewriteCond %{QUERY_STRING} (\.\.\/|\.\.\\) [OR]
+  RewriteCond %{QUERY_STRING} (javascript|vbscript|base64_encode|base64_decode) [NC,OR]
+  RewriteCond %{QUERY_STRING} (<|%3C).*iframe.*(>|%3E) [NC,OR]
+  RewriteCond %{QUERY_STRING} (<|%3C).*object.*(>|%3E) [NC,OR]
+  RewriteCond %{QUERY_STRING} (<|%3C).*embed.*(>|%3E) [NC,OR]
+  RewriteCond %{QUERY_STRING} (SELECT|UNION|INSERT|UPDATE|DELETE|DROP|CREATE|ALTER|EXEC|EXECUTE) [NC]
+  RewriteRule ^(.*)$ - [F,L]
+  
+  # Block bad user agents (bots, scrapers)
+  RewriteCond %{HTTP_USER_AGENT} ^$ [OR]
+  RewriteCond %{HTTP_USER_AGENT} (libwww|wget|python|nikto|curl|scan|java|winhttp|clshttp|loader) [NC,OR]
+  RewriteCond %{HTTP_USER_AGENT} (;|<|>|'|"|\)|\(|%0A|%0D|%27|%3C|%3E|%00) [NC]
+  RewriteRule ^(.*)$ - [F,L]
+  
+  # Block suspicious request methods
+  RewriteCond %{REQUEST_METHOD} ^(TRACE|DELETE|TRACK|DEBUG) [NC]
+  RewriteRule ^(.*)$ - [F,L]
+</IfModule>
+
+# ============================================
+# RATE LIMITING (Prevent DDoS)
+# ============================================
+<IfModule mod_evasive.c>
+  DOSHashTableSize 3097
+  DOSPageCount 5
+  DOSSiteCount 50
+  DOSPageInterval 1
+  DOSSiteInterval 1
+  DOSBlockingPeriod 10
+</IfModule>
+
+# ============================================
+# ENABLE GZIP COMPRESSION
+# ============================================
 <IfModule mod_deflate.c>
   AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
 </IfModule>
 
-# Browser Caching
+# ============================================
+# BROWSER CACHING
+# ============================================
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType image/webp "access plus 1 year"
@@ -14,7 +112,12 @@
   ExpiresByType text/html "access plus 1 hour"
 </IfModule>
 
-# Force HTTPS (Optional - uncomment if you have SSL)
-# RewriteEngine On
-# RewriteCond %{HTTPS} off
-# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# ============================================
+# FORCE HTTPS (Uncomment when SSL is active)
+# ============================================
+# <IfModule mod_rewrite.c>
+#   RewriteEngine On
+#   RewriteCond %{HTTPS} off
+#   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
+
