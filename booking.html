@@ -35,7 +35,6 @@
       <span>🍃</span>
       <span>Banana Mahal</span>
     </div>
-    <button id="darkModeToggle" class="dark-mode-btn" title="Toggle Dark Mode">🌓</button>
   </div>
 </nav>
 
@@ -124,40 +123,5 @@
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script src="assets/js/booking.js"></script>
-<script>
-// Dark Mode Toggle - Synced with Homepage
-const darkModeToggle = document.getElementById('darkModeToggle');
-
-function toggleDarkMode() {
-  const html = document.documentElement;
-  const currentTheme = html.getAttribute('data-theme');
-  const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-  
-  html.setAttribute('data-theme', newTheme);
-  html.classList.toggle('dark');
-  
-  // Update button icon
-  if (darkModeToggle) {
-    darkModeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌓';
-  }
-  
-  // Save preference
-  localStorage.setItem('theme', newTheme);
-}
-
-if (darkModeToggle) {
-  darkModeToggle.addEventListener('click', toggleDarkMode);
-}
-
-// Load Theme Preference from localStorage
-const savedTheme = localStorage.getItem('theme') || 'light';
-document.documentElement.setAttribute('data-theme', savedTheme);
-if (savedTheme === 'dark') {
-  document.documentElement.classList.add('dark');
-  if (darkModeToggle) {
-    darkModeToggle.textContent = '☀️';
-  }
-}
-</script>
 </body>
 </html>

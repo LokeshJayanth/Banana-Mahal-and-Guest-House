@@ -102,31 +102,9 @@ html[data-theme="dark"] .back-btn:hover {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  flex: 1;
-  justify-content: center;
-}
-
-.dark-mode-btn {
-  font-size: 1.5rem;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.dark-mode-btn:hover {
-  background: var(--bg-primary);
-  transform: scale(1.1);
-}
-
-.dark-mode-btn:active {
-  transform: scale(0.95);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 @media (max-width: 640px) {
