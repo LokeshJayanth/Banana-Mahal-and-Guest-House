@@ -1,7 +1,6 @@
 /* ===============================
-   MOBILE-FIRST BASE STYLES
+   MOBILE-FIRST BASE STYLES - LIGHT MODE ONLY
 ================================ */
-
 :root {
   --bg-primary: #ffffff;
   --bg-secondary: #f9fafb;
@@ -11,131 +10,54 @@
   --border-color: #e5e7eb;
   --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
-
-[data-theme="dark"] {
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --text-primary: #f1f5f9;
-  --text-secondary: #cbd5e1;
-  --card-bg: #1e293b;
-  --border-color: #334155;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-}
-
 * {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
-
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  background: #ffffff !important;
+  color: #111827 !important;
 }
-
 body {
   margin: 0;
   padding: 0;
   font-family: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  background-color: #ffffff !important;
+  color: #111827 !important;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 /* Hero Background - Mobile Optimized */
 .hero-bg {
   object-fit: cover;
   object-position: center center;
 }
-
 @media (max-width: 768px) {
   .hero-bg {
     display: none; /* Hide background image on mobile */
   }
-  
   /* White background for mobile hero */
   section.relative.min-h-screen {
-    background: #ffffff;
+    background: #ffffff !important;
     min-height: 100vh;
     min-height: -webkit-fill-available;
   }
-  
   /* Make text dark on mobile since background is white */
   section.relative.min-h-screen .hero-title {
-    color: #1f2937;
+    color: #1f2937 !important;
   }
-  
   section.relative.min-h-screen .relative.text-center {
-    color: #1f2937;
+    color: #1f2937 !important;
   }
-  
   /* Hide the dark overlay on mobile */
   section.relative.min-h-screen .absolute.bg-gradient-to-b {
     display: none;
   }
 }
-
-/* Dark Mode - Enhanced Visibility */
-html.dark,
-html[data-theme="dark"] {
-  background: #0f172a;
-  color: #f1f5f9;
 }
-
-html.dark body,
-html[data-theme="dark"] body {
-  background: #0f172a;
-  color: #f1f5f9;
-}
-
-/* Dark mode text colors */
-html.dark .text-gray-800,
-html[data-theme="dark"] .text-gray-800 {
-  color: #f1f5f9 !important;
-}
-
-html.dark .text-gray-700,
-html[data-theme="dark"] .text-gray-700 {
-  color: #e2e8f0 !important;
-}
-
-html.dark .text-gray-600,
-html[data-theme="dark"] .text-gray-600 {
-  color: #cbd5e1 !important;
-}
-
-html.dark .dark\:text-white,
-html[data-theme="dark"] .dark\:text-white {
-  color: #ffffff !important;
-}
-
-html.dark .dark\:text-gray-300,
-html[data-theme="dark"] .dark\:text-gray-300 {
-  color: #e2e8f0 !important;
-}
-
-html.dark .dark\:text-gray-400,
-html[data-theme="dark"] .dark\:text-gray-400 {
-  color: #cbd5e1 !important;
-}
-
-/* Dark mode backgrounds */
-html.dark .bg-white,
-html[data-theme="dark"] .bg-white {
-  background-color: #1e293b !important;
-}
-
-html.dark .bg-gray-50,
-html[data-theme="dark"] .bg-gray-50 {
-  background-color: #1e293b !important;
-}
-
-html.dark .dark\:bg-gray-900,
-html[data-theme="dark"] .dark\:bg-gray-900 {
-  background-color: #0f172a !important;
-}
-
 #progress-bar {
   position: fixed;
   top: 0;
@@ -145,41 +67,24 @@ html[data-theme="dark"] .dark\:bg-gray-900 {
   width: 0%;
   z-index: 1000;
 }
-
 .card {
-  background: var(--card-bg);
+  background: #ffffff;
   padding: 1.5rem;
   border-radius: 15px;
-  box-shadow: var(--shadow);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   transition: 0.4s;
-  border: 1px solid var(--border-color);
-  color: var(--text-primary);
+  border: 1px solid #e5e7eb;
+  color: #111827;
 }
-
 @media (min-width: 640px) {
   .card {
     padding: 2rem;
   }
 }
-
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
-
-html.dark .card,
-html[data-theme="dark"] .card {
-  background: #1e293b;
-  color: #f1f5f9;
-  border-color: #334155;
-}
-
-html.dark .modal-content,
-html[data-theme="dark"] .modal-content {
-  background: #1e293b;
-  color: #f1f5f9;
-}
-
 .modal {
   display: none;
   position: fixed;
@@ -193,7 +98,6 @@ html[data-theme="dark"] .modal-content {
   align-items: center;
   padding: 1rem;
 }
-
 .modal-content {
   background: var(--card-bg);
   padding: 1.5rem;
@@ -203,13 +107,11 @@ html[data-theme="dark"] .modal-content {
   max-height: 90vh;
   overflow-y: auto;
 }
-
 @media (min-width: 640px) {
   .modal-content {
     padding: 2rem;
   }
 }
-
 .input {
   width: 100%;
   margin-bottom: 12px;
@@ -221,19 +123,10 @@ html[data-theme="dark"] .modal-content {
   color: var(--text-primary);
   transition: border-color 0.3s;
 }
-
 .input:focus {
   outline: none;
   border-color: #e11d48;
 }
-
-html.dark .input,
-html[data-theme="dark"] .input {
-  background: #1e293b;
-  color: #f1f5f9;
-  border-color: #334155;
-}
-
 .close {
   cursor: pointer;
   float: right;
@@ -241,12 +134,6 @@ html[data-theme="dark"] .input {
   font-weight: bold;
   color: var(--text-primary);
 }
-
-html.dark .close,
-html[data-theme="dark"] .close {
-  color: #f1f5f9;
-}
-
 /* WhatsApp Button - Mobile Optimized */
 .whatsapp-float {
   position: fixed;
@@ -265,16 +152,13 @@ html[data-theme="dark"] .close {
   z-index: 1000;
   text-decoration: none;
 }
-
 .whatsapp-float:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
 }
-
 .whatsapp-float:active {
   transform: scale(0.95);
 }
-
 @media (max-width: 640px) {
   .whatsapp-float {
     width: 60px;
@@ -283,12 +167,10 @@ html[data-theme="dark"] .close {
     right: 16px;
   }
 }
-
 /* Testimonial Swiper */
 .testimonialSwiper .swiper-pagination-bullet {
   background: #e11d48;
 }
-
 /* Success/Error Messages */
 .success-message {
   color: #10b981;
@@ -299,7 +181,6 @@ html[data-theme="dark"] .close {
   margin-top: 10px;
   font-size: 14px;
 }
-
 .error-message {
   color: #ef4444;
   font-weight: 600;
@@ -309,43 +190,27 @@ html[data-theme="dark"] .close {
   margin-top: 10px;
   font-size: 14px;
 }
-
 /* Counter Animation */
 .counter {
   transition: all 0.5s ease;
 }
-
 /* ===============================
    EXPERIENCE GALLERY (UNIQUE)
 ================================ */
-
 .experience-gallery {
   background: linear-gradient(180deg, #ffffff, #fef2f2);
 }
-
-html.dark .experience-gallery,
-html[data-theme="dark"] .experience-gallery {
-  background: linear-gradient(180deg, #1e293b, #0f172a);
-}
-
 .gallery-subtitle {
   font-size: 14px;
   color: #666;
   margin-top: -10px;
   margin-bottom: 50px;
 }
-
 @media (min-width: 640px) {
   .gallery-subtitle {
     font-size: 16px;
   }
 }
-
-html.dark .gallery-subtitle,
-html[data-theme="dark"] .gallery-subtitle {
-  color: #cbd5e1;
-}
-
 .experience-grid {
   margin-top: 50px;
   display: grid;
@@ -353,14 +218,12 @@ html[data-theme="dark"] .gallery-subtitle {
   gap: 30px;
   perspective: 1200px;
 }
-
 @media (max-width: 640px) {
   .experience-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
 }
-
 /* Card */
 .experience-card {
   position: relative;
@@ -373,19 +236,11 @@ html[data-theme="dark"] .gallery-subtitle {
   cursor: pointer;
   height: 300px;
 }
-
 @media (min-width: 640px) {
   .experience-card {
     height: 350px;
   }
 }
-
-html.dark .experience-card,
-html[data-theme="dark"] .experience-card {
-  background: #334155;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-}
-
 /* Image */
 .experience-card img {
   width: 100%;
@@ -394,7 +249,6 @@ html[data-theme="dark"] .experience-card {
   display: block;
   transition: transform 0.6s ease;
 }
-
 /* Info overlay */
 .experience-info {
   position: absolute;
@@ -412,58 +266,44 @@ html[data-theme="dark"] .experience-card {
   opacity: 0;
   transition: opacity 0.5s ease;
 }
-
 @media (min-width: 640px) {
   .experience-info {
     padding: 25px;
   }
 }
-
 .experience-info h3 {
   font-size: 18px;
   margin-bottom: 5px;
   font-weight: 600;
 }
-
 @media (min-width: 640px) {
   .experience-info h3 {
     font-size: 20px;
   }
 }
-
 .experience-info span {
   font-size: 13px;
   opacity: 0.85;
 }
-
 @media (min-width: 640px) {
   .experience-info span {
     font-size: 14px;
   }
 }
-
 /* Hover Interaction */
 @media (min-width: 768px) {
   .experience-card:hover {
     transform: rotateY(-6deg) rotateX(4deg) scale(1.04);
     box-shadow: 0 30px 60px rgba(0,0,0,0.3);
   }
-
-  html.dark .experience-card:hover,
-  html[data-theme="dark"] .experience-card:hover {
-    box-shadow: 0 30px 60px rgba(0,0,0,0.7);
-  }
-
   .experience-card:hover img {
     transform: scale(1.1);
   }
 }
-
 .experience-card:hover .experience-info,
 .experience-card:active .experience-info {
   opacity: 1;
 }
-
 /* Mobile - Always show info */
 @media (max-width: 767px) {
   .experience-info {
@@ -471,18 +311,15 @@ html[data-theme="dark"] .experience-card {
     background: rgba(0,0,0,0.5);
   }
 }
-
 /* ===============================
    MOBILE RESPONSIVE UTILITIES
 ================================ */
-
 /* Touch-friendly buttons */
 button, .btn, a.btn {
   min-height: 48px;
   min-width: 48px;
   touch-action: manipulation;
 }
-
 /* Prevent text size adjustment on mobile */
 @media (max-width: 768px) {
   body {
@@ -490,7 +327,6 @@ button, .btn, a.btn {
     text-size-adjust: 100%;
   }
 }
-
 /* Safe area for notched devices */
 @supports (padding: max(0px)) {
   body {
@@ -498,10 +334,10 @@ button, .btn, a.btn {
     padding-right: max(0px, env(safe-area-inset-right));
   }
 }
-
 /* Smooth scrolling for mobile */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
   }
 }
+
